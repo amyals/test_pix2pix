@@ -58,6 +58,11 @@ if __name__ == '__main__':
             break
         model.set_input(data)  # unpack data from data loader
         model.test()           # run inference
+
+        losses = model.get_current_losses()
+        t_comp = (time.time() - iter_start_time) / opt.batch_size
+        visualizer.print_current_losses(epoch, epoch_iter, losses, t_comp, t_data)
+
         visuals = model.get_current_visuals()  # get image results
         img_path = model.get_image_paths()     # get image paths
         if i % 5 == 0:  # save images to an HTML file
