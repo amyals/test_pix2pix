@@ -57,11 +57,12 @@ if __name__ == '__main__':
         if i >= opt.num_test:  # only apply our model to opt.num_test images.
             break
         model.set_input(data)  # unpack data from data loader
+        model.optimize_parameters()
         model.test()           # run inference
 
         losses = model.get_current_losses()
-        t_comp = (time.time() - iter_start_time) / opt.batch_size
-        visualizer.print_current_losses(epoch, epoch_iter, losses, t_comp, t_data)
+        #t_comp = (time.time() - iter_start_time) / opt.batch_size
+        #visualizer.print_current_losses(epoch, epoch_iter, losses, t_comp, t_data)
 
         visuals = model.get_current_visuals()  # get image results
         img_path = model.get_image_paths()     # get image paths
